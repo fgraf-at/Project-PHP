@@ -1,0 +1,24 @@
+
+
+
+
+
+insert into `productRating`.Users (id, userName, passwordHash) values (1, 'test', '$2y$10$0dhe3ngxlmzgZrX6MpSHkeoDQ.dOaceVTomUq/nQXV0vSkFojq.VG');
+insert into `productRating`.Users (id, userName, passwordHash) values (2, 'test2', '$2y$10$0dhe3ngxlmzgZrX6MpSHkeoDQ.dOaceVTomUq/nQXV0vSkFojq.VG');
+
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS;
+insert into `productRating`.Product (id, name, price,  User_id,  producer) values (1, 'Bretter', 60, 1, 'Ein Holzhersteller Gmbh');
+insert into `productRating`.Product (id, name, price,  User_id, producer) values (2, 'Taschenlampe',  40, 2, 'Ein Taschenlampenproduzent Gmbh');
+insert into `productRating`.Product (id, name, price,  User_id, producer) values (3, 'Tisch', 60, 2, 'Ein Möbelproduzent Gmbh');
+
+
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS;
+insert into `productRating`.Rating (idRating, rating, comment, date, idProduct, User_id) values (1,  1, "blablaagfg", NOW(), 2, 1);
+insert into `productRating`.Rating (idRating, rating, comment, date, idProduct, User_id) values (2, 1,"Ein komischer Text", NOW(), 2, 1);
+insert into `productRating`.Rating (idRating, rating, comment, date, idProduct, User_id) values (3,  2,"Ich weiß nicht was ich schreiben soll", NOW(), 2, 1);
+
+insert into `productRating`.Rating (idRating, rating,  comment, date, idProduct, User_id) values (4, 5,"Comment", NOW(), 1, 2);
+insert into `productRating`.Rating (idRating, rating,  comment, date, idProduct, User_id) values (5,  2,"blablaagfg", NOW(), 1, 2);
+
+insert into `productRating`.Rating (idRating, rating,  comment, date, idProduct, User_id) values (6, 1,"Comment", NOW(), 3, 3);
+insert into `productRating`.Rating (idRating, rating,  comment, date, idProduct, User_id) values (7, 2,"Ich weiß was ich schreiben soll", NOW(), 3, 1);

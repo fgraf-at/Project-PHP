@@ -1,0 +1,79 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+
+
+-- -----------------------------------------------------
+-- Schema productRating
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `productRating` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema test
+-- -----------------------------------------------------
+USE `productRating` ;
+
+-- -----------------------------------------------------
+-- Table `productRating`.`User`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `productRating`.`Users` (
+  `id` INT NOT NULL auto_increment,
+  `userName` VARCHAR(255) NOT NULL,
+  `passwordHash` CHAR(60) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `productRating`.`Product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `productRating`.`Product` (
+  `id` INT NOT NULL auto_increment,
+  `name` VARCHAR(255) NOT NULL,
+  `price` FLOAT NOT NULL,
+  `User_id` INT NOT NULL,
+  `producer` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Product_User1_idx` (`User_id` ASC),
+  CONSTRAINT `fk_Product_User1`
+    FOREIGN KEY (`User_id`)
+    REFERENCES `productRating`.`Users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `productRating`.`Rating`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `productRating`.`Rating` (
+  `idRating` INT NOT NULL auto_increment,
+  `Rating` VARCHAR(45) NOT NULL,
+ `comment` VARCHAR(255) NULL,
+ `date` datetime NOT NULL,
+  `idProduct` INT NOT NULL,
+  `User_id` INT NOT NULL,
+  PRIMARY KEY (`idRating`),
+  
+  
+  CHECK (`Rating`<=5),
+  
+  
+  CONSTRAINT `fk_Price_Product`
+    FOREIGN KEY (`idProduct`)
+    REFERENCES `productRating`.`Product` (`id`)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    )
+ENGINE = InnoDB;
+
+
+-- Specify to check foreign key constraints (this is the default)
+    SET FOREIGN_KEY_CHECKS = 1;
+    
+/*
+drop table `productRating`.Rating;
+drop table `productRating`.Product;
+drop table `productRating`.users;
+*/
+
+
